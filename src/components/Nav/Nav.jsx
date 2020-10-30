@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchName from "../SearchName";
+import SearchName from "../SearchName/SearchName";
 import "./Nav.css";
 
 const Nav = () => {
