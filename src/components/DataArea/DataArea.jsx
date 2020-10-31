@@ -9,7 +9,7 @@ import DataAreaContext from "../../utils/DataAreaContext";
 const DataArea = () => {
     //Destructure to take in current employee state and set employee state to override current.
     //define useState as an array of users in descending order and list headings.
-  const [employeeState, setemployeeState] = useState({
+  const [employeeState, setEmployeeState] = useState({
     emps: [],
     order: "descend",
     filteredEmps: [],
@@ -75,7 +75,7 @@ const DataArea = () => {
     });
 
     //Take in existing employee state properties, filtered users,
-    setemployeeState({
+    setEmployeeState({
       ...employeeState,
       filteredEmps: sortedEmps,
       headings: updatedHeadings
@@ -94,14 +94,14 @@ const DataArea = () => {
     });
 
     //Take in existing employee state properties and update it for newly sorted or filtered state.
-    setemployeeState({ ...employeeState, filteredEmps: filteredList });
+    setEmployeeState({ ...employeeState, filteredEmps: filteredList });
   };
 
   //Provide a trigger when the setState mounts for filtering employees
   useEffect(() => {
     API.getEmps().then(results => {
       console.log(results.data.results);
-      setemployeeState({
+      setEmployeeState({
         ...employeeState,
         emps: results.data.results,
         filteredEmps: results.data.results
