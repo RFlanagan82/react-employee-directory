@@ -11,11 +11,11 @@ const DataTable = () => {
         <div className="datatable mt-5">
             <table
                 id="table"
-                className="table table-striped table-hover table-condensed"
+                className="table table-striped table-hover"
             >
             <thead>
                 <tr>
-                    {context.developerState.headings.map(({ name, width }) => {
+                    {context.employeeState.headings.map(({ name, width }) => {
                         return (
                             <th
                                 className="col"

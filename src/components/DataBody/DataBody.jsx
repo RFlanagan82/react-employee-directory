@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import "./DataBody.css"
 import DataAreaContext from "../../utils/DataAreaContext"
 
+//Build out the Data sets for the table
 const DataBody = () => {
     const context = useContext(DataAreaContext);
 
+    // Create function to compute Date of Birth
     function formatDate(date){
         const dateArray = date.split("-");
         const year = dateArray[0];
@@ -16,8 +18,8 @@ const DataBody = () => {
     }
     return (
         <tbody>
-        {context.developerState.filteredUsers[0] !== undefined && context.developerState.filteredUsers[0].name !== undefined ? (
-          context.developerState.filteredUsers.map(({ login, name, picture, phone, email, dob }) => {
+        {context.employeeState.filteredUsers[0] !== undefined && context.employeeState.filteredUsers[0].name !== undefined ? (
+          context.employeeState.filteredUsers.map(({ login, name, picture, phone, email, dob }) => {
             return (
               <tr key={login.uuid}>
                 <td data-th="Image" className="align-middle">
@@ -27,7 +29,7 @@ const DataBody = () => {
                     className="img-responsive"
                   />
                 </td>
-                <td data-th="Name" className="name-cell align-middle">
+                <td data-th="Name" className="name-field align-middle">
                   {name.first} {name.last}
                 </td>
                 <td data-th="Phone" className="align-middle">

@@ -5,8 +5,10 @@ import API from "../../utils/API";
 import "./DataArea.css";
 import DataAreaContext from "../../utils/DataAreaContext";
 
+//Need to Build Logic for Data Fields
 const DataArea = () => {
-  const [developerState, setDeveloperState] = useState({
+    //Define useState as an Array of users in descending order and list headings.
+  const [employeeState, setemployeeState] = useState({
     users: [],
     order: "descend",
     filteredUsers: [],
@@ -18,9 +20,9 @@ const DataArea = () => {
       { name: "dob", width: "10%", order: "descend" }
     ]
   });
-
+ // Need to create a method for sorting. Map and Filter; default to descend 
   const handleSort = heading => {
-    let currentOrder = developerState.headings
+    let currentOrder = employeeState.headings
       .filter(elem => elem.name === heading)
       .map(elem => elem.order)
       .toString();
@@ -31,6 +33,7 @@ const DataArea = () => {
       currentOrder = "descend";
     }
 
+    //Need a method to compare headings to sort them properly
     const compareFnc = (a, b) => {
       if (currentOrder === "ascend") {
         // account for missing values
@@ -64,22 +67,23 @@ const DataArea = () => {
         }
       }
     };
-    const sortedUsers = developerState.filteredUsers.sort(compareFnc);
-    const updatedHeadings = developerState.headings.map(elem => {
+    const sortedUsers = employeeState.filteredUsers.sort(compareFnc);
+    const updatedHeadings = employeeState.headings.map(elem => {
       elem.order = elem.name === heading ? currentOrder : elem.order;
       return elem;
     });
 
-    setDeveloperState({
-      ...developerState,
+    setemployeeState({
+      ...employeeState,
       filteredUsers: sortedUsers,
       headings: updatedHeadings
     });
   };
 
+  //Need a method to handle search change event 
   const handleSearchChange = event => {
     const filter = event.target.value;
-    const filteredList = developerState.users.filter(item => {
+    const filteredList = employeeState.users.filter(item => {
       let values = item.name.first.toLowerCase() + " " + item.name.last.toLowerCase();
       console.log(filter, values)
     if(values.indexOf(filter.toLowerCase()) !== -1){
@@ -87,15 +91,15 @@ const DataArea = () => {
     };
     });
 
-    setDeveloperState({ ...developerState, filteredUsers: filteredList });
+    setemployeeState({ ...employeeState, filteredUsers: filteredList });
   };
 
-  ///https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
+  //Provide a trigger when the setState mounts for filtering employees
   useEffect(() => {
     API.getUsers().then(results => {
       console.log(results.data.results);
-      setDeveloperState({
-        ...developerState,
+      setemployeeState({
+        ...employeeState,
         users: results.data.results,
         filteredUsers: results.data.results
       });
@@ -104,11 +108,11 @@ const DataArea = () => {
 
   return (
     <DataAreaContext.Provider
-      value={{ developerState, handleSearchChange, handleSort }}
+      value={{ employeeState, handleSearchChange, handleSort }}
     >
       <Nav />
       <div className="data-area">
-        {developerState.filteredUsers.length > 0 ? <DataTable /> : <div></div>}
+        {employeeState.filteredUsers.length > 0 ? <DataTable /> : <div></div>}
       </div>
     </DataAreaContext.Provider>
   );

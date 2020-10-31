@@ -1,4 +1,32 @@
-# Getting Started with Create React App
+# React Employee Directory
+
+## Installation
+
+## Usage
+
+## Building the App
+
+
+## Acceptance Criteria
+This can be found in the [instructions.md]("./instructions.md").
+
+## Credits
+
+
+## Resources
+
+
+## Contact
+
+
+## Links
+
+
+## License
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
