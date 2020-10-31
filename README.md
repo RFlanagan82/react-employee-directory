@@ -14,6 +14,10 @@ This can be found in the [instructions.md]("./instructions.md").
 
 
 ## Resources
+*[Using the Effect Hook](https://reactjs.org/docs/hooks-effect.html)
+*[Call Loading function for useEffect](https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once)
+
+
 
 
 ## Contact
