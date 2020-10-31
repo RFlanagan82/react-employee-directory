@@ -95,11 +95,11 @@ const DataArea = () => {
     };
     });
 
-    //Take in existing employee state properties and update it for newly filtered state.
+    //Take in existing employee state properties and update list by filtered name in search bar.
     setEmployeeState({ ...employeeState, filteredEmps: filteredList });
   };
 
-  //Provide a trigger when the setState mounts for sorting or filtering employees
+  //Trigger the results data for search query
   useEffect(() => {
     API.getEmps().then(results => {
       console.log(results.data.results);
@@ -111,7 +111,7 @@ const DataArea = () => {
     });
   }, []);
 
-  //Display on the app
+  //Display on the app page
   return (
     <DataAreaContext.Provider
       value={{ employeeState, handleSearchChange, handleSort }}
