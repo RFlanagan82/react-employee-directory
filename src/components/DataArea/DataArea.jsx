@@ -8,7 +8,7 @@ import DataAreaContext from "../../utils/DataAreaContext";
 //Need to Build Logic for Data Fields
 const DataArea = () => {
     //Destructure to take in current employee state and set employee state to override current.
-    //define useState as an array of users in descending order and list headings.
+    //define useState as an array of employees in descending order and list headings.
   const [employeeState, setEmployeeState] = useState({
     emps: [],
     order: "descend",
@@ -43,7 +43,7 @@ const DataArea = () => {
         } else if (b[heading] === undefined) {
           return -1;
         }
-        // numerically
+        // sort order by heading A name compared to B down or by age down
         else if (heading === "name") {
           return a[heading].first.localeCompare(b[heading].first);
         } else if (heading === "dob") {
@@ -52,13 +52,13 @@ const DataArea = () => {
           return a[heading].localeCompare(b[heading]);
         }
       } else {
-        // account for missing values
+        // account for undefined values
         if (a[heading] === undefined) {
           return 1;
         } else if (b[heading] === undefined) {
           return -1;
         }
-        // numerically
+        // sort order by heading B name compared to A or by age going up
         else if (heading === "name") {
           return b[heading].first.localeCompare(a[heading].first);
         }else if (heading === "dob") {
@@ -68,13 +68,15 @@ const DataArea = () => {
         }
       }
     };
+
+    //Define and return newly sorted employees
     const sortedEmps = employeeState.filteredEmps.sort(compareHeaders);
     const updatedHeadings = employeeState.headings.map(elem => {
       elem.order = elem.name === heading ? currentOrder : elem.order;
       return elem;
     });
 
-    //Take in existing employee state properties, filtered users,
+    //Set sorted list as new Employee state.
     setEmployeeState({
       ...employeeState,
       filteredEmps: sortedEmps,
@@ -82,7 +84,7 @@ const DataArea = () => {
     });
   };
 
-  //Handle search change event 
+  //Handle search change event for filtering employees
   const handleSearchChange = event => {
     const filter = event.target.value;
     const filteredList = employeeState.emps.filter(item => {
@@ -93,11 +95,11 @@ const DataArea = () => {
     };
     });
 
-    //Take in existing employee state properties and update it for newly sorted or filtered state.
+    //Take in existing employee state properties and update it for newly filtered state.
     setEmployeeState({ ...employeeState, filteredEmps: filteredList });
   };
 
-  //Provide a trigger when the setState mounts for filtering employees
+  //Provide a trigger when the setState mounts for sorting or filtering employees
   useEffect(() => {
     API.getEmps().then(results => {
       console.log(results.data.results);
@@ -109,6 +111,7 @@ const DataArea = () => {
     });
   }, []);
 
+  //Display on the app
   return (
     <DataAreaContext.Provider
       value={{ employeeState, handleSearchChange, handleSort }}
