@@ -1,4 +1,3 @@
-import React from "react";
 import Main from "./components/Main.jsx";
 import Wrapper from "./components/Wrapper.jsx";
 import Header from "./components/Header/Header.jsx";

@@ -31,6 +31,7 @@ Thanks to the instruction staff and TAs for their efforts as well as my tutor fo
 *[Using the State Hook](https://reactjs.org/docs/hooks-state.html)
 *[Call Loading function for useEffect](https://gosink.in/react-js-how-to-render-useeffect-only-once/)
 *[React - Context](https://reactjs.org/docs/context.html)
+*[.localeCompare - React](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)
 
 
 ## Links

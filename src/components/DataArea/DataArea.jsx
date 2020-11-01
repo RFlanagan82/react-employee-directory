@@ -21,7 +21,7 @@ const DataArea = () => {
       { name: "dob", width: "10%", order: "descend" }
     ]
   });
- // Create a constant for filtering and sorting. 
+ // Create a constant for handling filtering and sorting. 
   const handleSort = heading => {
     let currentOrder = employeeState.headings
       .filter(elem => elem.name === heading)
