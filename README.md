@@ -12,12 +12,18 @@
 This is a React.js app deployed to Github Pages. All files and components are contained within.
 
 ## Building the App
+In building the app I wanted to create clear divisions of page elements within the file structure and include their related styling sheets. 
+
+I broke up my components by section with the Nav, Header, Search field, and Data Table sections accordingly. I used the RandomUser Api to support the data table entries even though it provided some entries where the data and the employee image didn't really make sense.
+
+The data can be sorted by name, phone number, email, and date of birth and can be filtered down by name.
 
 
 ## Acceptance Criteria
 This can be found in the [instructions.md](public/instructions.md).
 
 ## Credits
+Thanks to the instruction staff and TAs for their efforts as well as my tutor for additional insights.
 
 
 ## Resources
@@ -25,7 +31,6 @@ This can be found in the [instructions.md](public/instructions.md).
 *[Using the State Hook](https://reactjs.org/docs/hooks-state.html)
 *[Call Loading function for useEffect](https://gosink.in/react-js-how-to-render-useeffect-only-once/)
 *[React - Context](https://reactjs.org/docs/context.html)
-
 
 
 ## Links
