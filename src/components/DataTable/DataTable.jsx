@@ -15,7 +15,7 @@ const DataTable = () => {
             >
             <thead>
                 <tr>
-                    {context.employeeState.headings.map(({ name, width }) => {
+                    {context.employeeState.headers.map(({ name, width }) => {
                         return (
                             <th
                                 className="col"

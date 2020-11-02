@@ -8,12 +8,12 @@ import DataAreaContext from "../../utils/DataAreaContext";
 //Need to Build Logic for Data Fields
 const DataArea = () => {
     //Destructure to take in current employee state and set employee state to override current.
-    //define useState as an array of employees in descending order and list headings.
+    //define useState as an array of employees in descending order and list headers.
   const [employeeState, setEmployeeState] = useState({
     emps: [],
     order: "descend",
     filteredEmps: [],
-    headings: [
+    headers: [
       { name: "Image", width: "10%", order: "descend" },
       { name: "name", width: "10%", order: "descend" },
       { name: "phone", width: "20%", order: "descend" },
@@ -22,9 +22,9 @@ const DataArea = () => {
     ]
   });
  // Create a constant for handling filtering and sorting. 
-  const handleSort = heading => {
-    let currentOrder = employeeState.headings
-      .filter(elem => elem.name === heading)
+  const handleSort = header => {
+    let currentOrder = employeeState.headers
+      .filter(elem => elem.name === header)
       .map(elem => elem.order)
       .toString();
 
@@ -34,45 +34,45 @@ const DataArea = () => {
       currentOrder = "descend";
     }
 
-    //Need a constant to compare headings to sort them properly
+    //Need a constant to compare headers to sort them properly
     const compareHeaders = (a, b) => {
       if (currentOrder === "ascend") {
         // account for undefined values
-        if (a[heading] === undefined) {
+        if (a[header] === undefined) {
           return 1;
-        } else if (b[heading] === undefined) {
+        } else if (b[header] === undefined) {
           return -1;
         }
-        // sort order by heading A name compared to B down or by age down
-        else if (heading === "name") {
-          return a[heading].first.localeCompare(b[heading].first);
-        } else if (heading === "dob") {
-          return a[heading].age - b[heading].age;
+        // sort order by header A name compared to B down or by age down
+        else if (header === "name") {
+          return a[header].first.localeCompare(b[header].first);
+        } else if (header === "dob") {
+          return a[header].age - b[header].age;
         } else {
-          return a[heading].localeCompare(b[heading]);
+          return a[header].localeCompare(b[header]);
         }
       } else {
         // account for undefined values
-        if (a[heading] === undefined) {
+        if (a[header] === undefined) {
           return 1;
-        } else if (b[heading] === undefined) {
+        } else if (b[header] === undefined) {
           return -1;
         }
-        // sort order by heading B name compared to A or by age going up
-        else if (heading === "name") {
-          return b[heading].first.localeCompare(a[heading].first);
-        }else if (heading === "dob") {
-          return b[heading].age - a[heading].age;
+        // sort order by header B name compared to A or by age going up
+        else if (header === "name") {
+          return b[header].first.localeCompare(a[header].first);
+        }else if (header === "dob") {
+          return b[header].age - a[header].age;
         }  else {
-          return b[heading].localeCompare(a[heading]);
+          return b[header].localeCompare(a[header]);
         }
       }
     };
 
     //Define and return newly sorted employees
     const sortedEmps = employeeState.filteredEmps.sort(compareHeaders);
-    const updatedHeadings = employeeState.headings.map(elem => {
-      elem.order = elem.name === heading ? currentOrder : elem.order;
+    const updatedheaders = employeeState.headers.map(elem => {
+      elem.order = elem.name === header ? currentOrder : elem.order;
       return elem;
     });
 
@@ -80,7 +80,7 @@ const DataArea = () => {
     setEmployeeState({
       ...employeeState,
       filteredEmps: sortedEmps,
-      headings: updatedHeadings
+      headers: updatedheaders
     });
   };
 
